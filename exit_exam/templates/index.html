@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Netflix Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center text-danger mb-4">🎬 Netflix Dashboard</h1>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="directors-tab" data-bs-toggle="tab" data-bs-target="#directors" type="button" role="tab">Top Directors</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="countries-tab" data-bs-toggle="tab" data-bs-target="#countries" type="button" role="tab">Top Countries</button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="dashboardTabsContent">
+            <!-- Directors Table -->
+            <div class="tab-pane fade show active" id="directors" role="tabpanel">
+                <table id="directorsTable" class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Director</th>
+                            <th>Number of Titles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for name, count in directors.items() %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Countries Table -->
+            <div class="tab-pane fade" id="countries" role="tabpanel">
+                <table id="countriesTable" class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Country</th>
+                            <th>Number of Titles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for name, count in countries.items() %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- Activate DataTables -->
+    <script>
+        $(document).ready(function () {
+            $('#directorsTable').DataTable();
+            $('#countriesTable').DataTable();
+        });
+    </script>
+</body>
+</html>
